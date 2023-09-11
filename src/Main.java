@@ -1,17 +1,56 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+    public static void main(String[] args) throws Exception {
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        System.out.print("Escribe tu operacion: ");
+        Scanner sc = new Scanner(System.in);
+        String sentencia = sc.nextLine();
+        String operacion = "";
+
+        String fracciones[] = sentencia.split(" por | mas | menos | entre ");
+
+        Fraccion fraccion1 = new Fraccion();
+        Fraccion fraccion2 = new Fraccion();
+
+        fraccion1 = Tomar_numeros.num_y_dem(fracciones[0]);
+        fraccion2 = Tomar_numeros.num_y_dem(fracciones[1]);
+
+        Fraccion resultado = new Fraccion();
+
+        //Suma
+        if (sentencia.contains(" mas ")) {
+            resultado = fraccion1.suma(fraccion2);
         }
+        //Resta
+        if (sentencia.contains(" menos ")) {
+            resultado = fraccion1.resta(fraccion2);
+        }
+        //Multiplicacion
+        if (sentencia.contains(" por ")) {
+            resultado = fraccion1.multiplicacion(fraccion2);
+        }
+        //Division
+        if (sentencia.contains(" entre ")) {
+            resultado = fraccion1.division(fraccion2);
+        }
+        try {
+            resultado.Resultado_num_dem(resultado.numerador, resultado.denominador);
+            System.out.println("El resultado es: " + resultado.Resultado_num_dem(resultado.numerador, resultado.denominador));
+
+        } catch (Exception e)
+        {
+            throw new Exception(e.getMessage());
+        }
+
+
     }
+
 }
+
+    
+
